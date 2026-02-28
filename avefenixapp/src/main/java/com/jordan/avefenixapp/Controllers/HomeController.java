@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jordan.avefenixapp.Dto.UserRequestDTO;
 import com.jordan.avefenixapp.Dto.UserResponseDTO;
+import com.jordan.avefenixapp.Entities.AnotacionEntity;
 import com.jordan.avefenixapp.Entities.UserEntity;
+import com.jordan.avefenixapp.Service.AnotacionService;
 import com.jordan.avefenixapp.Service.UserService;
 
 
@@ -21,9 +24,12 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AnotacionService anotacionService;
 
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, AnotacionService anotacionService) {
         this.userService = userService;
+        this.anotacionService = anotacionService;
     }
 
     //controlador directo mostrando lo que hay en la bd, no es recomendado.
@@ -42,6 +48,13 @@ public class HomeController {
     public ResponseEntity<UserResponseDTO> create(@RequestBody UserRequestDTO request){
         UserResponseDTO user = userService.createUser(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    //para listar las anotaciones por usuario
+    @GetMapping("/usuario/{userId}")
+    public List<AnotacionEntity> listarPorUsuario(@PathVariable Long userId)
+    {
+        return anotacionService.getAnotacionesByUser(userId);
     }
     
 
