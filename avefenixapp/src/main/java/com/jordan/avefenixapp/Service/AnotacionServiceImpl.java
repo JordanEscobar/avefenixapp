@@ -2,10 +2,8 @@ package com.jordan.avefenixapp.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.jordan.avefenixapp.Dto.Anotacion.AnotacionRequestDTO;
 import com.jordan.avefenixapp.Dto.Anotacion.AnotacionResponseDTO;
 import com.jordan.avefenixapp.Entities.AnotacionEntity;

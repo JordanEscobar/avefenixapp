@@ -2,10 +2,8 @@ package com.jordan.avefenixapp.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.jordan.avefenixapp.Dto.UserRequestDTO;
 import com.jordan.avefenixapp.Dto.UserResponseDTO;
 import com.jordan.avefenixapp.Entities.UserEntity;
@@ -15,7 +13,6 @@ import com.jordan.avefenixapp.Repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired
     private UserRepository userRepo;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
